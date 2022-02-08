@@ -8,4 +8,9 @@ SCRIPT_DIR=$(dirname $(readlink -f $0))
 }
 
 cd ${PREFETCHER_FRAMEWORK}/m5
-scons -j2 NO_FAST_ALLOC=False EXTRAS="${SCRIPT_DIR}/../src" "${SCRIPT_DIR}/../build/ALPHA_SE/m5.opt"
+
+SCONS=$(which scons)
+if (which scons2); then {
+        SCONS=$(which scons2)
+} fi
+$SCONS -j2 NO_FAST_ALLOC=False EXTRAS="${SCRIPT_DIR}/../src" "${SCRIPT_DIR}/../build/ALPHA_SE/m5.opt"
