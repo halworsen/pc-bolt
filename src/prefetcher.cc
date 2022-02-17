@@ -109,7 +109,7 @@ void prefetch_access(AccessStat stat) {
       size_t bestOffset = 0;
       uint64_t bestScore = 0;
       for (int i = 0; i < offsetListSize; ++i) {
-        if (scoreList[i] >= bestScore && scoreList[i] > BADSCORE) {
+        if (scoreList[i] >= bestScore && scoreList[i] >= BADSCORE) {
           bestOffset = offsetList[i];
           bestScore = scoreList[i];
           DPRINTF(HWPrefetch, "Current best offset: %d\n", bestOffset);
