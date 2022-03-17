@@ -50,7 +50,7 @@ static uint8_t RRHash(Addr address) {
   // TODO: Make an actual hash function
   uint8_t bitmask = 0b11111111;
   // And lower 8 bits with the next 8 bits
-  return (address & bitmask) & ((address >> 8) & bitmask);
+  return (address & bitmask) ^ ((address >> 8) & bitmask);
 }
 
 /**
