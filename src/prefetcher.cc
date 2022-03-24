@@ -10,8 +10,8 @@
 #include "interface.hh"
 
 #define SCOREMAX 31
-#define ROUNDMAX 32
-#define BADSCORE 0
+#define ROUNDMAX 100
+#define BADSCORE 1
 
 // Should not be changed without changing all other
 // infrastructure surrounding the Recent requests table!
@@ -79,6 +79,9 @@ void prefetch_access(AccessStat stat) {
       Addr pf_addr = stat.mem_addr + BLOCK_SIZE * currentOffset;
       issue_prefetch(pf_addr);
     }
+  } else {
+    uint8_t rrIndex = RRHash(stat.mem_addr);
+    recentRequestTable[rrIndex] = stat.mem_addr - currentOffset * BLOCK_SIZE;
   }
 
   size_t testOffset = offsetList[offsetIndex];

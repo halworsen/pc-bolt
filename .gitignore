@@ -1,4 +1,4 @@
 build/
 
 output/
-stats.txt
+stats*.txt
